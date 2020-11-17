@@ -23,3 +23,18 @@ body {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+
+ body {
+   font-family: Source Sans Pro, sans-serif;
+ }
+
+ .logo {
+   font-family: Bungee, sans-serif;
+ }
+
+ main {
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   margin: 0 5%;
+ }
