@@ -1,27 +1,16 @@
-let characters = 140;
 
 $(document).ready(function() {
+  let maxChars = 140;
   console.log("jQuery is ready!");
-  $(".tweet-text").on("keydown", function(key) {
-    if (key.which !== 8) {
-      characters--;
-    } else {
-      characters++;
-    }
+  $(".tweet-text").on("input", function() {
 
-    if(characters > 140) {
-      characters = 140;
-    }
-
-    if(characters < 0) {
+    if($(this).val().length > 140) {
       $(this).parent().find("output").css("color","red");
-    }
-
-    if(characters === 0) {
+    } else {
       $(this).parent().find("output").css("color", "#545149");
     }
 
-    $(this).parent().find("output").html(characters);
+    $(this).parent().find("output").html(maxChars - $(this).val().length);
     
   });
 });
