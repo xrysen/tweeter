@@ -6,6 +6,12 @@
 
 const currentDate = new Date(Date.now());
 
+const escape = (str) => {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
 const createTweetElement = (tweet) => {
   const createdAt = new Date(tweet.created_at);
   const dateDifference = currentDate.getTime() - createdAt.getTime();
@@ -14,11 +20,11 @@ const createTweetElement = (tweet) => {
   <article class = "tweet">
   <header>
     <img src= "${tweet.user.avatars}" alt="Profile Pic">
-    <span class="full-name">${tweet.user.name}</span>
-    <span class="tweet-username">${tweet.user.handle}</span>
+    <span class="full-name">${escape(tweet.user.name)}</span>
+    <span class="tweet-username">${escape(tweet.user.handle)}</span>
   </header>
   <main>
-    ${tweet.content.text}
+    ${escape(tweet.content.text)}
   </main>
   <footer>
     ${differenceInDays} Days ago
