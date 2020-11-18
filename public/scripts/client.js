@@ -4,18 +4,31 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// Test / driver code (temporary). Eventually will get this from the server.
-const tweetData = {
-  "user": {
-    "name": "Newton",
-    "avatars": "https://i.imgur.com/73hZDYK.png",
+// Fake data taken from initial-tweets.json
+const data = [
+  {
+    "user": {
+      "name": "Newton",
+      "avatars": "https://i.imgur.com/73hZDYK.png"
+      ,
       "handle": "@SirIsaac"
     },
-  "content": {
+    "content": {
       "text": "If I have seen further it is by standing on the shoulders of giants"
     },
-  "createdAt": 1461116232227
-}
+    "createdAt": 1461116232227
+  },
+  {
+    "user": {
+      "name": "Descartes",
+      "avatars": "https://i.imgur.com/nlhLi3I.png",
+      "handle": "@rd" },
+    "content": {
+      "text": "Je pense , donc je suis"
+    },
+    "createdAt": 1461113959088
+  }
+]
 
 const currentDate = new Date(Date.now());
 
@@ -41,13 +54,15 @@ const createTweetElement = (tweet) => {
 </article>`);
 
 return $tweet;
-
 };
 
+const renderTweets = (tweets) => {
+  for (const tweet of tweets) {
+    let $data = createTweetElement(tweet);
+    $('#tweet-container').append($data);
+  }
+}
+
 $(document).ready(function() {
-  const $tweet = createTweetElement(tweetData);
-  
-  // Test / driver code (temporary)
-  console.log($tweet); // to see what it looks like
-  $('#tweet-container').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
+  renderTweets(data);
 });
