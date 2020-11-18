@@ -45,26 +45,26 @@ const renderTweets = (tweets) => {
 }
 
 $(document).ready(function () {
-  
+      
   $("form").submit(function (event) {
-
     event.preventDefault();
-    const $tweetText = $('form').serialize();
-    const val = $('#tweet-text').val();
+    const $tweetText = $("form").serialize();
+    const val = $("#tweet-text").val();
     if (val.length === 0) {
-      alert("I'm sure you have more to say than that!");
-    } else if( val.length > 140) {
-      alert("You've exceeded the character length!");
+      alert("Field Empty");
+    } else if (val.length > 140) {
+      alert("You've exceeded the character length");
     } else {
-      $.post("/tweets", $tweetText, function() {
-        $.getJSON("/tweets", function(tweets) {
-          let $data = createTweetElement(tweets[tweets.length - 1]);
+      $.post("/tweets", $tweetText) 
+      .then(() => {
+        $.getJSON("/tweets", function(response) {
+          let $data = createTweetElement(response[response.length - 1]);
           $('#tweet-container').prepend($data);
         });
       });
     }
   });
-      
+
 
 
   const loadTweets = () => {
