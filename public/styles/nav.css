@@ -7,4 +7,33 @@
   color: #ffffff;
   padding: 1.5em 1.5em;
   z-index: 1;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
+
+.nav-options:hover {
+  cursor: pointer;
+}
+
+.nav-options:hover .arrow {
+  display: flex;
+}
+
+.arrow {
+  display: none;
+  position: absolute;
+  right: 125px;
+  top: 70px;
+  animation-name: animateArrow;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes animateArrow {
+  from {top: 70px;}
+  to {top: 80px;}
+}
+
+

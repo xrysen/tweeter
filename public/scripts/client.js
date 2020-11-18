@@ -53,7 +53,7 @@ const loadTweets = () => {
 const addError = (errorHTML) => {
   $('.container').prepend(errorHTML);
   $('.error').hide();
-  $('.error').slideDown("slow");
+  $('.error').slideDown("fast");
 }
 
 const showError = (error) => {
