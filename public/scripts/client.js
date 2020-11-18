@@ -19,7 +19,7 @@ const createTweetElement = (tweet) => {
   let $tweet = $(` 
   <article class = "tweet">
   <header>
-    <img src= "${tweet.user.avatars}" alt="Profile Pic">
+    <img src= "${escape(tweet.user.avatars)}" alt="Profile Pic">
     <span class="full-name">${escape(tweet.user.name)}</span>
     <span class="tweet-username">${escape(tweet.user.handle)}</span>
   </header>
@@ -44,17 +44,57 @@ const renderTweets = (tweets) => {
   }
 }
 
+const loadTweets = () => {
+  $.getJSON("/tweets", function(tweets) {
+   renderTweets(tweets);
+  });
+}
+
+const addError = (errorHTML) => {
+  $('.container').prepend(errorHTML);
+  $('.error').hide();
+  $('.error').slideDown("slow");
+}
+
+const showError = (error) => {
+  let errorString = "";
+  if (error === "Empty Form") {
+    errorString = "We're sure you have more to say than that!";
+  } else {
+    errorString = "Your Tweet is over 140 characters!";
+  }
+  
+  const errorHTML = $(`
+  <section class = "error">
+    <i class="fas fa-exclamation-triangle"></i>${errorString}<i class="fas fa-exclamation-triangle"></i>
+  </section>`);
+
+  if ($(".error").length) {
+    $(".error").slideUp("fast", function() {
+      $('.error').remove();
+      addError(errorHTML);
+    });
+  } else {
+    addError(errorHTML);
+  }
+}
+
 $(document).ready(function () {
-      
+  
   $("form").submit(function (event) {
     event.preventDefault();
     const $tweetText = $("form").serialize();
     const val = $("#tweet-text").val();
     if (val.length === 0) {
-      alert("Field Empty");
+      showError("Empty Form");
     } else if (val.length > 140) {
-      alert("You've exceeded the character length");
+      showError();
     } else {
+      if ($('.error').length) {
+        $('.error').slideUp("fast", function() {
+          $('.error').hide();
+        });
+      }
       $.post("/tweets", $tweetText) 
       .then(() => {
         $.getJSON("/tweets", function(response) {
@@ -67,11 +107,7 @@ $(document).ready(function () {
 
 
 
-  const loadTweets = () => {
-    $.getJSON("/tweets", function(tweets) {
-     renderTweets(tweets);
-    });
-  }
+
 
   loadTweets();
 
