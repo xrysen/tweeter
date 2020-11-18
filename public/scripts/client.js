@@ -45,8 +45,8 @@ const renderTweets = (tweets) => {
 }
 
 const loadTweets = () => {
-  $.getJSON("/tweets", function(tweets) {
-   renderTweets(tweets);
+  $.getJSON("/tweets", function (tweets) {
+    renderTweets(tweets);
   });
 }
 
@@ -63,14 +63,14 @@ const showError = (error) => {
   } else {
     errorString = "Your Tweet is over 140 characters!";
   }
-  
+
   const errorHTML = $(`
   <section class = "error">
     <i class="fas fa-exclamation-triangle"></i>${errorString}<i class="fas fa-exclamation-triangle"></i>
   </section>`);
 
   if ($(".error").length) {
-    $(".error").slideUp("fast", function() {
+    $(".error").slideUp("fast", function () {
       $('.error').remove();
       addError(errorHTML);
     });
@@ -79,8 +79,30 @@ const showError = (error) => {
   }
 }
 
+const createNewTweetForm = () => {
+  console.log("Creating new tweet");
+  const newTweet = $(`
+  <section class="new-tweet-container">
+      <h2>Compose Tweet</h2>
+      <form action="/tweets/" method="POST">
+        <label for="tweet-text" class="new-tweet-title">What are you humming about?</label>
+        <textarea name="text" id="tweet-text" class="tweet-text"></textarea>
+        <div class="form-text">
+          <div id="button-border">
+            <button type="submit" id="tweet-btn">Tweet</button>
+          </div>
+          <output name="counter" class="counter" for="tweet-text">140</output>
+        </div>
+      </form>
+    </section>
+`);
+
+  $('.container').prepend(newTweet);
+  $('.new-tweet-container').hide();
+}
+
 $(document).ready(function () {
-  
+
   $("form").submit(function (event) {
     event.preventDefault();
     const $tweetText = $("form").serialize();
@@ -91,22 +113,30 @@ $(document).ready(function () {
       showError();
     } else {
       if ($('.error').length) {
-        $('.error').slideUp("fast", function() {
+        $('.error').slideUp("fast", function () {
           $('.error').hide();
         });
       }
-      $.post("/tweets", $tweetText) 
-      .then(() => {
-        $.getJSON("/tweets", function(response) {
-          let $data = createTweetElement(response[response.length - 1]);
-          $('#tweet-container').prepend($data);
+      $.post("/tweets", $tweetText)
+        .then(() => {
+          $.getJSON("/tweets", function (response) {
+            let $data = createTweetElement(response[response.length - 1]);
+            $('#tweet-container').prepend($data);
+          });
         });
-      });
     }
   });
 
-
-
+  $(".nav-options").click(function() {
+    if( !$(".new-tweet-container").length) {
+      createNewTweetForm();
+      $(".new-tweet-container").slideDown(function() {
+        $(".tweet-text").focus();
+      });
+    } else {
+      $(".tweet-text").focus();
+    }
+  });
 
 
   loadTweets();
