@@ -5,36 +5,11 @@
  */
 
 // Fake data taken from initial-tweets.json
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "createdAt": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd"
-    },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "createdAt": 1461113959088
-  }
-]
 
 const currentDate = new Date(Date.now());
 
 const createTweetElement = (tweet) => {
-  const createdAt = new Date(tweet.createdAt);
+  const createdAt = new Date(tweet.created_at);
   const dateDifference = currentDate.getTime() - createdAt.getTime();
   const differenceInDays = Math.round(dateDifference / (1000 * 3600 * 24));
   let $tweet = $(` 
@@ -65,9 +40,6 @@ const renderTweets = (tweets) => {
 }
 
 $(document).ready(function () {
-  renderTweets(data);
-
-  const $button = $('#tweet-btn');
   
   $("form").submit(function (event) {
 
@@ -78,4 +50,13 @@ $(document).ready(function () {
         console.log($tweetText);
       });
   });
+
+  const loadTweets = () => {
+    $.getJSON("/tweets", function(tweets) {
+     renderTweets(tweets);
+    });
+  }
+
+  loadTweets();
+
 });
