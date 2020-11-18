@@ -4,8 +4,6 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// Fake data taken from initial-tweets.json
-
 const currentDate = new Date(Date.now());
 
 const createTweetElement = (tweet) => {
@@ -33,6 +31,7 @@ const createTweetElement = (tweet) => {
 };
 
 const renderTweets = (tweets) => {
+  tweets = tweets.reverse();
   for (const tweet of tweets) {
     let $data = createTweetElement(tweet);
     $('#tweet-container').append($data);
@@ -51,8 +50,12 @@ $(document).ready(function () {
     } else if( val.length > 140) {
       alert("You've exceeded the character length!");
     } else {
-      console.log("sent!");
-      $.post("/tweets", $tweetText)
+      $.post("/tweets", $tweetText, function() {
+        $.getJSON("/tweets", function(tweets) {
+          let $data = createTweetElement(tweets[tweets.length - 1]);
+          $('#tweet-container').prepend($data);
+        });
+      });
     }
   });
       
