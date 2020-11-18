@@ -1,4 +1,7 @@
 .nav-style {
+  position: fixed;
+  width: 100%;
+  top: 0px;
   height: 120px;
   background-color: #4056A1;
   color: #ffffff;
