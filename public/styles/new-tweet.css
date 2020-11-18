@@ -39,7 +39,18 @@
   background-color: darkblue;
   color: white;
   outline: none;
-  border: 0;
   padding: 5px;
+  border: 0;
   font-size: 17px;
+}
+
+#button-border {
+  border: 4px solid transparent;
+  border-radius: 2px;
+  padding: 1px;
+}
+
+#button-border:hover {
+  border: 4px solid rgb(59, 98, 148);
+  padding: 1px;
 }
