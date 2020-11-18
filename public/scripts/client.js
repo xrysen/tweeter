@@ -64,19 +64,18 @@ const renderTweets = (tweets) => {
   }
 }
 
-const createTweet = (tweetText) => {
-  console.log("It worked!");
-}
-
 $(document).ready(function () {
   renderTweets(data);
 
   const $button = $('#tweet-btn');
-  const $tweetText = $('.tweet-text');
-  $button.click( function(event) {
-    console.log("Clicked!");
+  
+  $("form").submit(function (event) {
+
     event.preventDefault();
-    $.ajax($tweetText, { method: 'POST' })
-    .then(createTweet("Lalala"));
+    const $tweetText = $('#tweet-text').serialize();
+    $.post("/tweets", $tweetText)
+      .then(function () {
+        console.log($tweetText);
+      });
   });
 });
