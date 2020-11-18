@@ -4,6 +4,10 @@ article.tweet:hover {
   filter: opacity(100%);
 }
 
+article.tweet:hover .tweet-username {
+  visibility: visible;
+}
+
 article.tweet {
   border: 4px solid black;
   margin: 50px 0;
@@ -53,6 +57,7 @@ article.tweet header img {
   right: 30px;
   color: #c5cbe3;
   font-weight: bold;
+  visibility: hidden;
 }
 
 .tweet-icons {

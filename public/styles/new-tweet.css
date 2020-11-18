@@ -35,7 +35,7 @@
   font-family: Bungee, sans-serif;
 }
 
-.tweet-btn {
+#tweet-btn {
   background-color: darkblue;
   color: white;
   outline: none;

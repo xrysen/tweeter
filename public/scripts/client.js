@@ -22,7 +22,8 @@ const data = [
     "user": {
       "name": "Descartes",
       "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
+      "handle": "@rd"
+    },
     "content": {
       "text": "Je pense , donc je suis"
     },
@@ -34,8 +35,8 @@ const currentDate = new Date(Date.now());
 
 const createTweetElement = (tweet) => {
   const createdAt = new Date(tweet.createdAt);
-  let dateDifference = currentDate.getTime() - createdAt.getTime();
-  let differenceInDays = Math.round(dateDifference / (1000 * 3600 * 24));
+  const dateDifference = currentDate.getTime() - createdAt.getTime();
+  const differenceInDays = Math.round(dateDifference / (1000 * 3600 * 24));
   let $tweet = $(` 
   <article class = "tweet">
   <header>
@@ -53,7 +54,7 @@ const createTweetElement = (tweet) => {
   </footer>
 </article>`);
 
-return $tweet;
+  return $tweet;
 };
 
 const renderTweets = (tweets) => {
@@ -63,6 +64,19 @@ const renderTweets = (tweets) => {
   }
 }
 
-$(document).ready(function() {
+const createTweet = (tweetText) => {
+  console.log("It worked!");
+}
+
+$(document).ready(function () {
   renderTweets(data);
+
+  const $button = $('#tweet-btn');
+  const $tweetText = $('.tweet-text');
+  $button.click( function(event) {
+    console.log("Clicked!");
+    event.preventDefault();
+    $.ajax($tweetText, { method: 'POST' })
+    .then(createTweet("Lalala"));
+  });
 });
