@@ -44,12 +44,19 @@ $(document).ready(function () {
   $("form").submit(function (event) {
 
     event.preventDefault();
-    const $tweetText = $('#tweet-text').serialize();
-    $.post("/tweets", $tweetText)
-      .then(function () {
-        console.log($tweetText);
-      });
+    const $tweetText = $('form').serialize();
+    const val = $('#tweet-text').val();
+    if (val.length === 0) {
+      alert("I'm sure you have more to say than that!");
+    } else if( val.length > 140) {
+      alert("You've exceeded the character length!");
+    } else {
+      console.log("sent!");
+      $.post("/tweets", $tweetText)
+    }
   });
+      
+
 
   const loadTweets = () => {
     $.getJSON("/tweets", function(tweets) {

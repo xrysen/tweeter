@@ -2,8 +2,6 @@
 $(document).ready(function() {
   const maxChars = 140;
 
-  console.log("jQuery is ready!");
-
   $(".tweet-text").on("input", function() {
 
     if($(this).val().length > 140) {
