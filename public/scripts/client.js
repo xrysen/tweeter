@@ -16,6 +16,16 @@ const createTweetElement = (tweet) => {
   const createdAt = new Date(tweet.created_at);
   const dateDifference = currentDate.getTime() - createdAt.getTime();
   const differenceInDays = Math.round(dateDifference / (1000 * 3600 * 24));
+  let dateString = "";
+  
+  if(differenceInDays === 0) {
+    dateString = "Today";
+  } else if (differenceInDays === 1) {
+    dateString = "1 Day ago";
+  } else {
+    dateString = `${differenceInDays} Days ago`;
+  }
+
   let $tweet = $(` 
   <article class = "tweet">
   <header>
@@ -27,7 +37,7 @@ const createTweetElement = (tweet) => {
     ${escape(tweet.content.text)}
   </main>
   <footer>
-    ${differenceInDays} Days ago
+    ${dateString} 
     <span class="tweet-icons"><i class="fas fa-flag fa-fw"></i>&nbsp;&nbsp;<i
         class="fas fa-retweet"></i>&nbsp;&nbsp;<i class="fas fa-heart"></i></span>
   </footer>
