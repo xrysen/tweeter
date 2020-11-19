@@ -6,6 +6,11 @@
 
 const currentDate = new Date(Date.now());
 
+/*
+ * escape(str): 
+ *   Takes a string and wraps a div around it to prevent scripting insertion
+*/
+
 const escape = (str) => {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
@@ -118,11 +123,11 @@ $(document).ready(function () {
             $(".counter").text("140");
 
           });
-
         });
       });
     }
   });
+
 
   $("#nav-options").on("click", function() {
     if ($(".new-tweet-container").is(":visible")) {
@@ -138,13 +143,13 @@ $(document).ready(function () {
   $(document).scroll(function() {
     let y = $(this).scrollTop();
     if( y > 200) {
-      $('#scrollUp').fadeIn();
+      $('#scroll-Up').fadeIn();
     } else {
-      $('#scrollUp').fadeOut();
+      $('#scroll-Up').fadeOut();
     }
   });
 
-  $("#scrollUp").click(function() {
+  $("#scroll-Up").click(function() {
     $(window).scrollTop(0);
     $(".new-tweet-container").slideDown();
     $("#tweet-text").focus();
