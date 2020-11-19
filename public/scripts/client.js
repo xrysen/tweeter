@@ -109,10 +109,15 @@ $(document).ready(function () {
   });
 
   $("#nav-options").on("click", function() {
-    $(".new-tweet-container").slideDown();
-    $("#tweet-text").focus();
-
+    if ($(".new-tweet-container").is(":visible")) {
+      $(".new-tweet-container").slideUp();
+    } else {
+      $(".new-tweet-container").slideDown();
+      $("#tweet-text").focus();
+    }
   });
+
+
 
   $(document).scroll(function() {
     let y = $(this).scrollTop();
