@@ -54,3 +54,19 @@ body {
    margin-right: 10px;
    margin-left: 10px;
  }
+
+ #scrollUp {
+   position: fixed;
+   bottom: 20px;
+   right: 20px;
+   color: red;
+   font-size: 50px;
+   display: none;
+ }
+
+ #scrollUp:hover {
+   font-size: 60px;
+   cursor: pointer;
+ }
+
+ 

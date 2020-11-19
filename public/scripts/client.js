@@ -114,4 +114,19 @@ $(document).ready(function () {
 
   });
 
+  $(document).scroll(function() {
+    let y = $(this).scrollTop();
+    if( y > 200) {
+      $('#scrollUp').fadeIn();
+    } else {
+      $('#scrollUp').fadeOut();
+    }
+  });
+
+  $("#scrollUp").click(function() {
+    $(window).scrollTop(0);
+    $(".new-tweet-container").slideDown();
+    $("#tweet-text").focus();
+  });
+
 });
