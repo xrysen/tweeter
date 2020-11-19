@@ -13,11 +13,11 @@
   justify-content: space-between;
 }
 
-.nav-options:hover {
+#nav-options:hover {
   cursor: pointer;
 }
 
-.nav-options:hover .arrow {
+#nav-options:hover .arrow {
   display: flex;
 }
 

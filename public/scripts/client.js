@@ -79,66 +79,39 @@ const showError = (error) => {
   }
 }
 
-const createNewTweetForm = () => {
-  console.log("Creating new tweet");
-  const newTweet = $(`
-  <section class="new-tweet-container">
-      <h2>Compose Tweet</h2>
-      <form action="/tweets/" method="POST">
-        <label for="tweet-text" class="new-tweet-title">What are you humming about?</label>
-        <textarea name="text" id="tweet-text" class="tweet-text"></textarea>
-        <div class="form-text">
-          <div id="button-border">
-            <button type="submit" id="tweet-btn">Tweet</button>
-          </div>
-          <output name="counter" class="counter" for="tweet-text">140</output>
-        </div>
-      </form>
-    </section>
-`);
-
-  $('.container').prepend(newTweet);
-  $('.new-tweet-container').hide();
-}
-
 $(document).ready(function () {
-
-  $("form").submit(function (event) {
-    event.preventDefault();
-    const $tweetText = $("form").serialize();
-    const val = $("#tweet-text").val();
-    if (val.length === 0) {
-      showError("Empty Form");
-    } else if (val.length > 140) {
-      showError();
-    } else {
-      if ($('.error').length) {
-        $('.error').slideUp("fast", function () {
-          $('.error').hide();
-        });
-      }
-      $.post("/tweets", $tweetText)
-        .then(() => {
-          $.getJSON("/tweets", function (response) {
-            let $data = createTweetElement(response[response.length - 1]);
-            $('#tweet-container').prepend($data);
-          });
-        });
-    }
-  });
-
-  $(".nav-options").click(function() {
-    if( !$(".new-tweet-container").length) {
-      createNewTweetForm();
-      $(".new-tweet-container").slideDown(function() {
-        $(".tweet-text").focus();
-      });
-    } else {
-      $(".tweet-text").focus();
-    }
-  });
-
-
+  
   loadTweets();
+  
+  $("form").on("submit", function (event) {
+   
+  event.preventDefault();
+  const $tweetText = $("form").serialize();
+  const val = $("#tweet-text").val();
+  if (val.length === 0) {
+     showError("Empty Form");
+  } else if (val.length > 140) {
+     showError();
+  } else {
+    if ($('.error').length) {
+       $('.error').slideUp("fast", function () {
+         $('.error').hide();
+      });
+    }
+    $.post("/tweets", $tweetText)
+      .then(() => {
+        $.getJSON("/tweets", function (response) {
+          let $data = createTweetElement(response[response.length - 1]);
+          $('#tweet-container').prepend($data);
+        });
+      });
+    }
+  });
+
+  $("#nav-options").on("click", function() {
+    $(".new-tweet-container").slideDown();
+    $("#tweet-text").focus();
+
+  });
 
 });
