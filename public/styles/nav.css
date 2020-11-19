@@ -15,6 +15,7 @@
 
 #nav-options:hover {
   cursor: pointer;
+  -webkit-text-stroke: 1px black;
 }
 
 #nav-options:hover .arrow {
@@ -22,7 +23,7 @@
 }
 
 .arrow {
-  display: none;
+  
   position: absolute;
   right: 125px;
   top: 70px;

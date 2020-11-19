@@ -103,6 +103,12 @@ $(document).ready(function () {
         $.getJSON("/tweets", function (response) {
           let $data = createTweetElement(response[response.length - 1]);
           $('#tweet-container').prepend($data);
+          $(".new-tweet-container").slideUp(function() {
+            $("#tweet-text").val('');
+            $(".counter").text("140");
+
+          });
+
         });
       });
     }

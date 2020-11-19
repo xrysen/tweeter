@@ -61,5 +61,10 @@ article.tweet header img {
 }
 
 .tweet-icons {
+  visibility: hidden;
+}
+
+article.tweet:hover .tweet-icons {
+  visibility: visible;
   color: darkblue;
 }
