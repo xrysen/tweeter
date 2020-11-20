@@ -1,3 +1,5 @@
+@import "layout";
+
 .new-tweet-container {
   display: flex;
   flex-direction: column;
@@ -30,7 +32,7 @@
   }
   
   .tweet-text::placeholder {
-    font-family: Source Sans Pro, sans-serif;
+    font-family: $body-font;
     font-weight: bold;
   }
   
@@ -38,7 +40,7 @@
     display: flex;
     flex-direction: row;
     Justify-content: space-between;
-    font-family: Bungee, sans-serif;
+    font-family: $logo-font;
   }
   
   #tweet-btn {
