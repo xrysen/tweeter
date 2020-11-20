@@ -4,26 +4,28 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+/* eslint-env jquery */
+
 const currentDate = new Date(Date.now());
 
 /*
- * escape(str): 
- *   Takes a string and wraps a div around it to prevent scripting insertion
+* escape(str):
+*   Takes a string and wraps a div around it to prevent scripting insertion
 */
 
 const escape = (str) => {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
-}
+};
 
 const createTweetElement = (tweet) => {
   const createdAt = new Date(tweet.created_at);
   const dateDifference = currentDate.getTime() - createdAt.getTime();
   const differenceInDays = Math.round(dateDifference / (1000 * 3600 * 24));
   let dateString = "";
-  
-  if(differenceInDays === 0) {
+
+  if (differenceInDays === 0) {
     dateString = "Today";
   } else if (differenceInDays === 1) {
     dateString = "1 Day ago";
@@ -57,19 +59,19 @@ const renderTweets = (tweets) => {
     let $data = createTweetElement(tweet);
     $('#tweet-container').append($data);
   }
-}
+};
 
 const loadTweets = () => {
   $.getJSON("/tweets", function (tweets) {
     renderTweets(tweets);
   });
-}
+};
 
 const addError = (errorHTML) => {
   $('.container').prepend(errorHTML);
   $('.error').hide();
   $('.error').slideDown("fast");
-}
+};
 
 const showError = (error) => {
   let errorString = "";
@@ -92,36 +94,35 @@ const showError = (error) => {
   } else {
     addError(errorHTML);
   }
-}
+};
 
 $(document).ready(function () {
-  
+
   loadTweets();
-  
+
   $("form").on("submit", function (event) {
-   
-  event.preventDefault();
-  const $tweetText = $("form").serialize();
-  const val = $("#tweet-text").val();
-  if (val.length === 0) {
-     showError("Empty Form");
-  } else if (val.length > 140) {
-     showError();
-  } else {
-    if ($('.error').length) {
-       $('.error').slideUp("fast", function () {
-         $('.error').hide();
-      });
-    }
-    $.post("/tweets", $tweetText)
+
+    event.preventDefault();
+    const $tweetText = $("form").serialize();
+    const val = $("#tweet-text").val();
+    if (val.length === 0) {
+      showError("Empty Form");
+    } else if (val.length > 140) {
+      showError();
+    } else {
+      if ($('.error').length) {
+        $('.error').slideUp("fast", function () {
+          $('.error').hide();
+        });
+      }
+      $.post("/tweets", $tweetText)
       .then(() => {
         $.getJSON("/tweets", function (response) {
           let $data = createTweetElement(response[response.length - 1]);
           $('#tweet-container').prepend($data);
-          $(".new-tweet-container").slideUp(function() {
+          $(".new-tweet-container").slideUp(function () {
             $("#tweet-text").val('');
             $(".counter").text("140");
-
           });
         });
       });
@@ -129,7 +130,7 @@ $(document).ready(function () {
   });
 
 
-  $("#nav-options").on("click", function() {
+  $("#nav-options").on("click", function () {
     $(window).scrollTop(0);
     if ($(".new-tweet-container").is(":visible")) {
       $(".new-tweet-container").slideUp();
@@ -142,16 +143,16 @@ $(document).ready(function () {
 
 
 
-  $(document).scroll(function() {
+  $(document).scroll(function () {
     let y = $(this).scrollTop();
-    if( y > 100) {
+    if (y > 100) {
       $('#scroll-Up').fadeIn();
     } else {
       $('#scroll-Up').fadeOut();
     }
   });
 
-  $("#scroll-Up").click(function() {
+  $("#scroll-Up").click(function () {
     $(window).scrollTop(0);
     $(".new-tweet-container").slideDown();
     $("#tweet-text").focus();
