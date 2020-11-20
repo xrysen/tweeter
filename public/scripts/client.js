@@ -130,8 +130,10 @@ $(document).ready(function () {
 
 
   $("#nav-options").on("click", function() {
+    $(window).scrollTop(0);
     if ($(".new-tweet-container").is(":visible")) {
       $(".new-tweet-container").slideUp();
+      $(".error").slideUp();
     } else {
       $(".new-tweet-container").slideDown();
       $("#tweet-text").focus();
@@ -142,7 +144,7 @@ $(document).ready(function () {
 
   $(document).scroll(function() {
     let y = $(this).scrollTop();
-    if( y > 200) {
+    if( y > 100) {
       $('#scroll-Up').fadeIn();
     } else {
       $('#scroll-Up').fadeOut();

@@ -1,0 +1,45 @@
+#nav-style {
+  display: hidden;
+  width: 100%;
+  color: #ffffff;
+  padding: 1.5em 1.5em;
+  z-index: 2;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  #nav-options:hover {
+    cursor: pointer;
+    -webkit-text-stroke: 1px black;
+  }
+  
+  #nav-options:hover .arrow {
+    display: flex;
+  }
+  
+  .arrow {
+    position: absolute;
+    right: 125px;
+    top: 70px;
+    animation: animateArrow 1s infinite alternate;
+  }
+}
+    
+
+@keyframes animateArrow {
+  from {top: 70px;}
+  to {top: 80px;}
+}
+
+@media only screen and (min-width: 1024px) {
+  #nav-style {
+     background-color: #4056A1;
+     position: fixed;
+     width: 100%;
+     top: 0px;
+     height: 120px;
+     padding: 1.5em 1.5em;
+     z-index: 2;
+  }
+}

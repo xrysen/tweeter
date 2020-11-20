@@ -4,69 +4,186 @@
  * Do not modify these two selectors, please
  */
 html {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow-y: scroll;
 }
+
 *, *:before, *:after {
-  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
 }
 
 /*
  * Global layout stuff
  */
-
 body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: row;
+      -ms-flex: row wrap;
+          flex: row wrap;
   color: #545149;
   background-color: #f4f1ec;
   font-size: 24px;
+  font-family: Source Sans Pro, sans-serif;
+}
+
+body .logo {
+  font-family: Bungee, sans-serif;
+}
+
+body #scroll-Up {
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  color: red;
+  font-size: 50px;
+  display: none;
+}
+
+body #scroll-Up:hover {
+  font-size: 60px;
+  cursor: pointer;
 }
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  margin: 0 5%;
+}
 
- body {
-   font-family: Source Sans Pro, sans-serif;
- }
+.container .error {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 25px;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 4px solid red;
+  color: red;
+  position: relative;
+  top: 400px;
+}
 
- .logo {
-   font-family: Bungee, sans-serif;
- }
+.container .fa-exclamation-triangle {
+  margin-right: 10px;
+  margin-left: 10px;
+}
 
- .container {
-   display: flex;
-   justify-content: center;
-   flex-direction: column;
-   margin: 0 5%;
- }
+#tweet-container {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 400px;
+  width: 100%;
+}
 
- .error {
-   display: flex;
-   justify-content: center;
-   margin-top: 30px;
-   width: 100%;
-   padding-top: 10px;
-   padding-bottom: 10px;
-   border: 4px solid red;
-   color: red;
- }
+#tweet-container article.tweet {
+  border: 4px solid black;
+  margin: 50px 0;
+  opacity: 0.5;
+}
 
- .fa-exclamation-triangle {
-   margin-right: 10px;
-   margin-left: 10px;
- }
+#tweet-container article.tweet:hover {
+  -webkit-box-shadow: 5px 10px #374270;
+          box-shadow: 5px 10px #374270;
+  opacity: 1;
+}
 
- #scroll-Up {
-   position: fixed;
-   bottom: 20px;
-   right: 20px;
-   color: red;
-   font-size: 50px;
-   display: none;
- }
+#tweet-container article.tweet:hover .tweet-username {
+  visibility: visible;
+}
 
- #scroll-Up:hover {
-   font-size: 60px;
-   cursor: pointer;
- }
+#tweet-container article.tweet main {
+  margin-left: 20px;
+  margin-right: 20px;
+  font-weight: bold;
+  padding-bottom: 30px;
+  border-bottom: 4px solid black;
+}
 
- 
+#tweet-container article.tweet footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 15px;
+  margin: 10px 50px 20px 50px;
+}
+
+#tweet-container article.tweet header {
+  margin-top: 10px;
+  margin-left: 10px;
+  font-family: Source Sans Pro;
+}
+
+#tweet-container article.tweet header img {
+  margin-top: 10px;
+}
+
+#tweet-container .full-name {
+  position: relative;
+  bottom: 20px;
+}
+
+#tweet-container .tweet-username {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  position: relative;
+  bottom: 50px;
+  right: 30px;
+  color: #c5cbe3;
+  font-weight: bold;
+  visibility: hidden;
+}
+
+#tweet-container .tweet-icons {
+  visibility: hidden;
+}
+
+#tweet-container article.tweet:hover .tweet-icons {
+  visibility: visible;
+  color: darkblue;
+}
+
+@media only screen and (min-width: 1020px) {
+  #tweet-container {
+    margin-top: 250px;
+  }
+  .container .error {
+    top: 200px;
+  }
+}
+/*# sourceMappingURL=layout.css.map */

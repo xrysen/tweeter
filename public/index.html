@@ -21,13 +21,12 @@
   <link rel="stylesheet" href="styles/nav.css" type="text/css" />
   <link rel="stylesheet" href="styles/header.css" type="text/css" />
   <link rel="stylesheet" href="styles/new-tweet.css" type="text/css" />
-  <link rel="stylesheet" href="styles/tweets.css" type="text/css" />
 </head>
 
 <body>
   
   <!-- Top nav bar (fixed) -->
-  <nav class="nav-style">
+  <nav id="nav-style">
     <span class="logo">tweeter</span>
     <span id ="nav-options"><strong>Write</strong> a new tweet
       <br />
@@ -41,7 +40,7 @@
     </div>
     <br>
     <div class="username">
-      <h2><strong>Sean</strong> Oyler</h2>
+      <h2><strong>Tifa</strong> Lockheart</h2>
     </div>
   </header>
 
@@ -50,11 +49,11 @@
   </div>
   <!-- Page-specific (main) content here -->
   <main class="container">
-    <section class="new-tweet-container">
+    <section class="new-tweet-container" style = "display: none;">
       <h2>Compose Tweet</h2>
       <form action="/tweets/" method="POST">
-        <label for="tweet-text" class="new-tweet-title">What are you humming about?</label>
-        <textarea name="text" id="tweet-text" class="tweet-text"></textarea>
+        <!-- <label for="tweet-text" class="new-tweet-title">What are you humming about?</label>  -->
+        <textarea name="text" id="tweet-text" class="tweet-text" placeholder="What are you humming about?"></textarea>
         <div class="form-text">
           <div id="button-border">
             <button type="submit" id="tweet-btn">Tweet</button>

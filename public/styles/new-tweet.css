@@ -1,21 +1,38 @@
 .new-tweet-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  flex-shrink: 20%;
-  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+  top: 400px;
+  width: 100%;
 }
 
-.new-tweet-title {
+.new-tweet-container .new-tweet-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin-bottom: 20px;
   font-weight: bold;
 }
 
-.tweet-text {
+.new-tweet-container .tweet-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border: 0px;
   border-bottom: solid;
   height: 2em;
@@ -25,18 +42,43 @@
   width: 100%;
 }
 
-.tweet-text:focus {
+.new-tweet-container .tweet-text:focus {
   outline: none;
 }
 
-.form-text {
+.new-tweet-container .tweet-text::-webkit-input-placeholder {
+  font-family: Source Sans Pro, sans-serif;
+  font-weight: bold;
+}
+
+.new-tweet-container .tweet-text:-ms-input-placeholder {
+  font-family: Source Sans Pro, sans-serif;
+  font-weight: bold;
+}
+
+.new-tweet-container .tweet-text::-ms-input-placeholder {
+  font-family: Source Sans Pro, sans-serif;
+  font-weight: bold;
+}
+
+.new-tweet-container .tweet-text::placeholder {
+  font-family: Source Sans Pro, sans-serif;
+  font-weight: bold;
+}
+
+.new-tweet-container .form-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   Justify-content: space-between;
   font-family: Bungee, sans-serif;
 }
 
-#tweet-btn {
+.new-tweet-container #tweet-btn {
   background-color: darkblue;
   color: white;
   outline: none;
@@ -46,14 +88,21 @@
   cursor: pointer;
 }
 
-#button-border {
+.new-tweet-container #button-border {
   border: 4px solid transparent;
   border-radius: 2px;
   padding: 1px;
 }
 
-
-#button-border:hover {
-  border: 4px solid rgb(59, 98, 148);
+.new-tweet-container #button-border:hover {
+  border: 4px solid #3b6294;
   padding: 1px;
 }
+
+@media only screen and (min-width: 1024px) {
+  .new-tweet-container {
+    position: relative;
+    top: 200px;
+  }
+}
+/*# sourceMappingURL=new-tweet.css.map */
